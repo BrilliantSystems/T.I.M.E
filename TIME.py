@@ -166,7 +166,6 @@ while True:
         print(plat2)
         print(space2)
         insert_str(plat3,player, posx)
-    print(posx)
 
     #ending sleep (reduce gameplay speed)
     time.sleep(0.025)
