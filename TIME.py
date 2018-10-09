@@ -173,14 +173,15 @@ while gametype == 0:
         print(space2)
         insert_str(plat3,player, posx)
 
-    #ending sleep (reduce gameplay speed)
+    #ending sleep (reduce gameplay speed, make this a variable with frontend)
     time.sleep(0.025)
 
 #end side-on code here
 
+
 #start top-down code here
 
-#default variables
+#default variables (these will be referenced to by script when frontend is added)
 posx = 3
 posy = 5
 player = "O"
@@ -193,12 +194,12 @@ row3 = "+             +"
 row2 = "+             +"
 row1 = "+++++++++++++++"
 
-#gameloop
+#gameloop (frontend will allow for modification of this loop)
 while gametype == 1:
 
     refresh()
 
-    #input
+    #input (make inputs variables in the frontend.)
     if keyboard.is_pressed("up"):
         if posy < 8:
             posy = posy + 1
@@ -216,7 +217,7 @@ while gametype == 1:
             posx = posx + 1
         time.sleep(0.015)
 
-    #drawing
+    #drawing (add more if statements for more rows of text. you will also need to add more row variables.)
     if posy == 1:
         print(row8)
         print(row7)
@@ -290,7 +291,7 @@ while gametype == 1:
         print(row2)
         print(row1)
 
-    #ending sleep
+    #ending sleep (frontend variable as well)
     time.sleep(0.025)
         
 
