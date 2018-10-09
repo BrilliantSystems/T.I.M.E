@@ -17,6 +17,7 @@ def refresh():
 def insert_str(string, str_to_insert, index):
     print(string[:index] + str_to_insert + string[index+1:])
 
+#I think lines beyond this point should be exported as a library for side-on games. later i can repurpose this for top-down 4-way moving games.
 #random platforms (make this into a seperate script later)
 plat1 = ""
 plat2 = ""
