@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.02
+#Text Interplacer Movement Engine (TIME) V0.05
 #By John Stubblefield
 
 #imports
@@ -17,7 +17,12 @@ def refresh():
 def insert_str(string, str_to_insert, index):
     print(string[:index] + str_to_insert + string[index+1:])
 
+#parameters for game
+#0 = side-on, 1 = top-down
+gametype = 1
+
 #I think lines beyond this point should be exported as a library for side-on games. later i can repurpose this for top-down 4-way moving games.
+
 #random platforms (make this into a seperate script later)
 plat1 = ""
 plat2 = ""
@@ -62,7 +67,7 @@ player = "p"
 
 
 #game loop
-while True:
+while gametype == 0:
     #variable refresh
     stand = posx-1
     plat1 = plat1base
@@ -170,6 +175,124 @@ while True:
 
     #ending sleep (reduce gameplay speed)
     time.sleep(0.025)
+
+#end side-on code here
+
+#start top-down code here
+
+#default variables
+posx = 3
+posy = 5
+player = "O"
+row8 = "+++++++++++++++"
+row7 = "+             +"
+row6 = "+             +"
+row5 = "+             +"
+row4 = "+             +"
+row3 = "+             +"
+row2 = "+             +"
+row1 = "+++++++++++++++"
+
+#gameloop
+while gametype == 1:
+
+    refresh()
+
+    #input
+    if keyboard.is_pressed("up"):
+        if posy < 8:
+            posy = posy + 1
+        time.sleep(0.015)
+    if keyboard.is_pressed("down"):
+        if posy > 1:
+            posy = posy - 1
+        time.sleep(0.015)
+    if keyboard.is_pressed("left"):
+        if posx > 0:
+            posx = posx - 1
+        time.sleep(0.015)
+    if keyboard.is_pressed("right"):
+        if posx < 14:
+            posx = posx + 1
+        time.sleep(0.015)
+
+    #drawing
+    if posy == 1:
+        print(row8)
+        print(row7)
+        print(row6)
+        print(row5)
+        print(row4)
+        print(row3)
+        print(row2)
+        insert_str(row1, player, posx)
+    if posy == 2:
+        print(row8)
+        print(row7)
+        print(row6)
+        print(row5)
+        print(row4)
+        print(row3)
+        insert_str(row2, player, posx)
+        print(row1)
+    if posy == 3:
+        print(row8)
+        print(row7)
+        print(row6)
+        print(row5)
+        print(row4)
+        insert_str(row3, player, posx)
+        print(row2)
+        print(row1)
+    if posy == 4:
+        print(row8)
+        print(row7)
+        print(row6)
+        print(row5)
+        insert_str(row4, player, posx)
+        print(row3)
+        print(row2)
+        print(row1)
+    if posy == 5:
+        print(row8)
+        print(row7)
+        print(row6)
+        insert_str(row5, player, posx)
+        print(row4)
+        print(row3)
+        print(row2)
+        print(row1)
+    if posy == 6:
+        print(row8)
+        print(row7)
+        insert_str(row6, player, posx)
+        print(row5)
+        print(row4)
+        print(row3)
+        print(row2)
+        print(row1)
+    if posy == 7:
+        print(row8)
+        insert_str(row7, player, posx)
+        print(row6)
+        print(row5)
+        print(row4)
+        print(row3)
+        print(row2)
+        print(row1)
+    if posy == 8:
+        insert_str(row8, player, posx)
+        print(row7)
+        print(row6)
+        print(row5)
+        print(row4)
+        print(row3)
+        print(row2)
+        print(row1)
+
+    #ending sleep
+    time.sleep(0.025)
+        
 
         
     
