@@ -4,18 +4,8 @@
 #imports (put these before each module script)
 import random, keyboard, time
 from platform import system as system_name 
-from os import system as system_call       
-
-#system functions (make these into a seperate script)
-
-#screen refresh
-def refresh():
-    command = "cls" if system_name().lower()=="windows" else "clear"
-    system_call(command)
-
-#character replacer
-def insert_str(string, str_to_insert, index):
-    print(string[:index] + str_to_insert + string[index+1:])
+from os import system as system_call
+import EFM
 
 #parameters for game
 #0 = side-on, 1 = top-down
@@ -79,7 +69,7 @@ while gametype == 0:
 
     
     #clears previous frame
-    refresh()
+    EFM.refresh()
 
     #input
     if keyboard.is_pressed('left'):
@@ -143,35 +133,35 @@ while gametype == 0:
     
     #height draw routines
     if posy == 5:
-        insert_str(plat1, player, posx)
+        EFM.insert_str(plat1, player, posx)
         print(space1)
         print(plat2)
         print(space2)
         print(plat3)
     if posy == 4:
         print(plat2)
-        insert_str(space1, player, posx)
+        EFM.insert_str(space1, player, posx)
         print(plat2)
         print(space2)
         print(plat3)
     if posy == 3:
         print(plat1)
         print(space1)
-        insert_str(plat2,player, posx)
+        EFM.insert_str(plat2,player, posx)
         print(space2)
         print(plat3)
     if posy == 2:
         print(plat2)
         print(space1)
         print(plat2)
-        insert_str(space2, player, posx)
+        EFM.insert_str(space2, player, posx)
         print(plat3)
     if posy == 1:
         print(plat1)
         print(space1)
         print(plat2)
         print(space2)
-        insert_str(plat3,player, posx)
+        EFM.insert_str(plat3,player, posx)
 
     #ending sleep (reduce gameplay speed, make this a variable with frontend)
     time.sleep(0.025)
@@ -201,7 +191,7 @@ row1 = "+++++++++++++++"
 #gameloop (frontend will allow for modification of this loop)
 while gametype == 1:
 
-    refresh()
+    EFM.refresh()
 
     #input (make inputs variables in the frontend.)
     if keyboard.is_pressed("up"):
@@ -230,7 +220,7 @@ while gametype == 1:
         print(row4)
         print(row3)
         print(row2)
-        insert_str(row1, player, posx)
+        EFM.insert_str(row1, player, posx)
     if posy == 2:
         print(row8)
         print(row7)
@@ -238,7 +228,7 @@ while gametype == 1:
         print(row5)
         print(row4)
         print(row3)
-        insert_str(row2, player, posx)
+        EFM.insert_str(row2, player, posx)
         print(row1)
     if posy == 3:
         print(row8)
@@ -246,7 +236,7 @@ while gametype == 1:
         print(row6)
         print(row5)
         print(row4)
-        insert_str(row3, player, posx)
+        EFM.insert_str(row3, player, posx)
         print(row2)
         print(row1)
     if posy == 4:
@@ -254,7 +244,7 @@ while gametype == 1:
         print(row7)
         print(row6)
         print(row5)
-        insert_str(row4, player, posx)
+        EFM.insert_str(row4, player, posx)
         print(row3)
         print(row2)
         print(row1)
@@ -262,7 +252,7 @@ while gametype == 1:
         print(row8)
         print(row7)
         print(row6)
-        insert_str(row5, player, posx)
+        EFM.insert_str(row5, player, posx)
         print(row4)
         print(row3)
         print(row2)
@@ -270,7 +260,7 @@ while gametype == 1:
     if posy == 6:
         print(row8)
         print(row7)
-        insert_str(row6, player, posx)
+        EFM.insert_str(row6, player, posx)
         print(row5)
         print(row4)
         print(row3)
@@ -278,7 +268,7 @@ while gametype == 1:
         print(row1)
     if posy == 7:
         print(row8)
-        insert_str(row7, player, posx)
+        EFM.insert_str(row7, player, posx)
         print(row6)
         print(row5)
         print(row4)
@@ -286,7 +276,7 @@ while gametype == 1:
         print(row2)
         print(row1)
     if posy == 8:
-        insert_str(row8, player, posx)
+        EFM.insert_str(row8, player, posx)
         print(row7)
         print(row6)
         print(row5)
