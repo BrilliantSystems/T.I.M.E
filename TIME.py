@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.05
+#Text Interplacer Movement Engine (TIME) V0.07
 #By John Stubblefield
 
 #imports (put these before each module script)
