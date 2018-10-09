@@ -1,12 +1,12 @@
 #Text Interplacer Movement Engine (TIME) V0.05
 #By John Stubblefield
 
-#imports
+#imports (put these before each module script)
 import random, keyboard, time
 from platform import system as system_name 
 from os import system as system_call       
 
-#system functions
+#system functions (make these into a seperate script)
 
 #screen refresh
 def refresh():
