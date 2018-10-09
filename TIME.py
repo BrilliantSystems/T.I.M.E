@@ -184,6 +184,10 @@ while gametype == 0:
 #default variables (these will be referenced to by script when frontend is added)
 posx = 3
 posy = 5
+posxmin = 0
+posxmax = 14
+posymin = 1
+posymax = 8
 player = "O"
 row8 = "+++++++++++++++"
 row7 = "+             +"
@@ -201,19 +205,19 @@ while gametype == 1:
 
     #input (make inputs variables in the frontend.)
     if keyboard.is_pressed("up"):
-        if posy < 8:
+        if posy < posymax:
             posy = posy + 1
         time.sleep(0.015)
     if keyboard.is_pressed("down"):
-        if posy > 1:
+        if posy > posymin:
             posy = posy - 1
         time.sleep(0.015)
     if keyboard.is_pressed("left"):
-        if posx > 0:
+        if posx > posxmin:
             posx = posx - 1
         time.sleep(0.015)
     if keyboard.is_pressed("right"):
-        if posx < 14:
+        if posx < posxmax:
             posx = posx + 1
         time.sleep(0.015)
 
