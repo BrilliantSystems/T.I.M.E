@@ -5,7 +5,7 @@
 import random, keyboard, time
 from platform import system as system_name 
 from os import system as system_call
-import EFM
+import efm
 
 #parameters for game
 #0 = side-on, 1 = top-down
@@ -69,7 +69,7 @@ while gametype == 0:
 
     
     #clears previous frame
-    EFM.refresh()
+    efm.refresh()
 
     #input
     if keyboard.is_pressed('left'):
@@ -133,35 +133,35 @@ while gametype == 0:
     
     #height draw routines
     if posy == 5:
-        EFM.insert_str(plat1, player, posx)
+        efm.insert_str(plat1, player, posx)
         print(space1)
         print(plat2)
         print(space2)
         print(plat3)
     if posy == 4:
         print(plat2)
-        EFM.insert_str(space1, player, posx)
+        efm.insert_str(space1, player, posx)
         print(plat2)
         print(space2)
         print(plat3)
     if posy == 3:
         print(plat1)
         print(space1)
-        EFM.insert_str(plat2,player, posx)
+        efm.insert_str(plat2,player, posx)
         print(space2)
         print(plat3)
     if posy == 2:
         print(plat2)
         print(space1)
         print(plat2)
-        EFM.insert_str(space2, player, posx)
+        efm.insert_str(space2, player, posx)
         print(plat3)
     if posy == 1:
         print(plat1)
         print(space1)
         print(plat2)
         print(space2)
-        EFM.insert_str(plat3,player, posx)
+        efm.insert_str(plat3,player, posx)
 
     #ending sleep (reduce gameplay speed, make this a variable with frontend)
     time.sleep(0.025)
@@ -191,7 +191,7 @@ row1 = "+++++++++++++++"
 #gameloop (frontend will allow for modification of this loop)
 while gametype == 1:
 
-    EFM.refresh()
+    efm.refresh()
 
     #input (make inputs variables in the frontend.)
     if keyboard.is_pressed("up"):
@@ -220,7 +220,7 @@ while gametype == 1:
         print(row4)
         print(row3)
         print(row2)
-        EFM.insert_str(row1, player, posx)
+        efm.insert_str(row1, player, posx)
     if posy == 2:
         print(row8)
         print(row7)
@@ -228,7 +228,7 @@ while gametype == 1:
         print(row5)
         print(row4)
         print(row3)
-        EFM.insert_str(row2, player, posx)
+        efm.insert_str(row2, player, posx)
         print(row1)
     if posy == 3:
         print(row8)
@@ -236,7 +236,7 @@ while gametype == 1:
         print(row6)
         print(row5)
         print(row4)
-        EFM.insert_str(row3, player, posx)
+        efm.insert_str(row3, player, posx)
         print(row2)
         print(row1)
     if posy == 4:
@@ -244,7 +244,7 @@ while gametype == 1:
         print(row7)
         print(row6)
         print(row5)
-        EFM.insert_str(row4, player, posx)
+        efm.insert_str(row4, player, posx)
         print(row3)
         print(row2)
         print(row1)
@@ -252,7 +252,7 @@ while gametype == 1:
         print(row8)
         print(row7)
         print(row6)
-        EFM.insert_str(row5, player, posx)
+        efm.insert_str(row5, player, posx)
         print(row4)
         print(row3)
         print(row2)
@@ -260,7 +260,7 @@ while gametype == 1:
     if posy == 6:
         print(row8)
         print(row7)
-        EFM.insert_str(row6, player, posx)
+        efm.insert_str(row6, player, posx)
         print(row5)
         print(row4)
         print(row3)
@@ -268,7 +268,7 @@ while gametype == 1:
         print(row1)
     if posy == 7:
         print(row8)
-        EFM.insert_str(row7, player, posx)
+        efm.insert_str(row7, player, posx)
         print(row6)
         print(row5)
         print(row4)
@@ -276,7 +276,7 @@ while gametype == 1:
         print(row2)
         print(row1)
     if posy == 8:
-        EFM.insert_str(row8, player, posx)
+        efm.insert_str(row8, player, posx)
         print(row7)
         print(row6)
         print(row5)
