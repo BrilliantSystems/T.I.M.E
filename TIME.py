@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.15
+#Text Interplacer Movement Engine (TIME) V0.17
 #By John Stubblefield
 
 #perhaps these two game settings will be two seperate scripts, and the games use functions from here. (time.sideon(foo,foo,foo))
@@ -7,69 +7,30 @@
 import random, keyboard, time
 from platform import system as system_name 
 from os import system as system_call
-import efm
+import efm, sgf
 
 #parameters for game
 #0 = side-on, 1 = top-down
-gametype = 1
+gametype = 0
 
 #I think lines beyond this point should be exported as a library for side-on games. later i can repurpose this for top-down 4-way moving games.
 
-#random platforms (make this into a seperate script later)
-plat1 = ""
-plat2 = ""
-plat3 = ""
-d = 0
-for i in range(29):
-    d = random.randint(0,3)
-    if d == 0:
-        plat1 = plat1 + " "
-    if d != 0:
-        plat1 = plat1 + "_"
-plat1 = plat1 + "   "
-plat1base = plat1
-
-for i in range(29):
-    d = random.randint(0,3)
-    if d == 0:
-        plat2 = plat2 + " "
-    if d != 0:
-        plat2 = plat2 + "_"
-plat2 = plat2 + "   "
-plat2base = plat2
-    
-for i in range(29):
-    d = random.randint(0,3)
-    if d == 0:
-        plat3 = plat3 + " "
-    if d != 0:
-        plat3 = plat3 + "_"
-plat3 = plat3 + "   "
-plat3base = plat3
-
-#initial variable declaration
-plat1 = plat1base
-plat2 = plat2base
-plat3 = plat3base
+plats = []
 space1 = "                              "
 space2 = "                              "
 posx = 3
 posy = 5
 player = "p"
 
+sgf.rand_plats(3,plats,30,3)
 
 #game loop
 while gametype == 0:
     #variable refresh
     stand = posx-1
-    plat1 = plat1base
-    plat2 = plat2base
-    plat3 = plat3base
     space1 = "                              "
     space2 = "                              "
 
-
-    
     #clears previous frame
     efm.refresh()
 
@@ -94,40 +55,40 @@ while gametype == 0:
     elif keyboard.is_pressed("Ctrl"):
         if player == "p":
             if posy == 5:
-                if plat1base[posx+1] != "_":
-                    if plat1base[posx+2] == "_":
+                if plats[0][posx+1] != "_":
+                    if plats[0][posx+2] == "_":
                         posx = posx + 2
             if posy == 3:
-                if plat2base[posx+1] != "_":
-                    if plat2base[posx+2] == "_":
+                if plats[1][posx+1] != "_":
+                    if plats[1][posx+2] == "_":
                         posx = posx + 2
             if posy == 1:
-                if plat3base[posx+1] != "_":
-                    if plat3base[posx+2] == "_":
+                if plats[2][posx+1] != "_":
+                    if plats[2][posx+2] == "_":
                         posx = posx + 2
         if player == "q":
             if posy == 5:
-                if plat1base[posx-1] != "_":
-                    if plat1base[posx-2] == "_":
+                if plats[0][posx-1] != "_":
+                    if plats[0][posx-2] == "_":
                         posx = posx - 2
             if posy == 3:
-                if plat2base[posx-1] != "_":
-                    if plat2base[posx-2] == "_":
+                if plats[1][posx-1] != "_":
+                    if plats[1][posx-2] == "_":
                         posx = posx - 2
             if posy == 1:
-                if plat3base[posx-1] != "_":
-                    if plat3base[posx-2] == "_":
+                if plats[2][posx-1] != "_":
+                    if plats[2][posx-2] == "_":
                         posx = posx - 2
                 
     #falling physics
     if posy == 5:
-        if plat1base[posx] != "_":
+        if plats[0][posx] != "_":
             posy = posy-1
     if posy == 4:
         time.sleep(0.025)
         posy = posy-1 
     if posy == 3:
-        if plat2base[posx] != "_":
+        if plats[1][posx] != "_":
             posy = posy-1
     if posy == 2:
         time.sleep(0.025)
@@ -135,35 +96,35 @@ while gametype == 0:
     
     #height draw routines
     if posy == 5:
-        efm.insert_str(plat1, player, posx)
+        efm.insert_str(plats[0], player, posx)
         print(space1)
-        print(plat2)
+        print(plats[1])
         print(space2)
-        print(plat3)
+        print(plats[2])
     if posy == 4:
-        print(plat2)
+        print(plats[0])
         efm.insert_str(space1, player, posx)
-        print(plat2)
+        print(plats[1])
         print(space2)
-        print(plat3)
+        print(plats[2])
     if posy == 3:
-        print(plat1)
+        print(plats[0])
         print(space1)
-        efm.insert_str(plat2,player, posx)
+        efm.insert_str(plats[1],player, posx)
         print(space2)
-        print(plat3)
+        print(plats[2])
     if posy == 2:
-        print(plat2)
+        print(plats[0])
         print(space1)
-        print(plat2)
+        print(plats[1])
         efm.insert_str(space2, player, posx)
-        print(plat3)
+        print(plats[2])
     if posy == 1:
-        print(plat1)
+        print(plats[0])
         print(space1)
-        print(plat2)
+        print(plats[1])
         print(space2)
-        efm.insert_str(plat3,player, posx)
+        efm.insert_str(plats[2],player, posx)
 
     #ending sleep (reduce gameplay speed, make this a variable with frontend)
     time.sleep(0.025)
