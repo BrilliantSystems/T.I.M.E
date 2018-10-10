@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.07
+#Text Interplacer Movement Engine (TIME) V0.1
 #Engine Functions Module (EFM)
 #By John Stubblefield
 
