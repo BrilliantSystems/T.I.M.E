@@ -15,3 +15,5 @@ def refresh():
 #character replacer
 def insert_str(string, str_to_insert, index):
     print(string[:index] + str_to_insert + string[index+1:])
+
+    
