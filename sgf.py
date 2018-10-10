@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.1
+#Text Interplacer Movement Engine (TIME) V0.15
 #side-on gameplay functions (SGF)
 #By John Stubblefield
 
