@@ -20,6 +20,7 @@ def rand_plats(plat_amount, plat_output, plat_length, plat_ratio):
                     plat_output[plat_index] = plat_output[plat_index] + " "
                 if r != 0:
                     plat_output[plat_index] = plat_output[plat_index] + "_"
+        plat_output[plat_index] = plat_output[plat_index] + "_"
         plat_index += 1
 
 
