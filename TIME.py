@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.1
+#Text Interplacer Movement Engine (TIME) V0.15
 #By John Stubblefield
 
 #perhaps these two game settings will be two seperate scripts, and the games use functions from here. (time.sideon(foo,foo,foo))
