@@ -1,4 +1,4 @@
-#Text Interplacer Movement Engine (TIME) V0.17
+#Text Interplacer Movement Engine (TIME) V0.2
 #By John Stubblefield
 
 #perhaps these two game settings will be two seperate scripts, and the games use functions from here. (time.sideon(foo,foo,foo))
@@ -16,27 +16,29 @@ gametype = 0
 #I think lines beyond this point should be exported as a library for side-on games. later i can repurpose this for top-down 4-way moving games.
 
 plats = []
-space1 = "                              "
-space2 = "                              "
 posx = 3
-posy = 5
-player = "p"
-
-sgf.rand_plats(3,plats,30,3)
+posy = 0
+player_right = "p"
+player_left = "q"
+player = player_right
+plat_amount = 3
+posymax = plat_amount
+posxmax = 30
+plat_ratio=5
+sgf.rand_plats(plat_amount,plats,posxmax,plat_ratio)
 
 #game loop
 while gametype == 0:
     #variable refresh
     stand = posx-1
-    space1 = "                              "
-    space2 = "                              "
+    scan = plat_amount+1
 
     #clears previous frame
     efm.refresh()
 
     #input
     if keyboard.is_pressed('left'):
-        player = "q"
+        player = player_left
         if posx <= 0:
             time.sleep(0.15)
         else:
@@ -44,8 +46,8 @@ while gametype == 0:
             time.sleep(0.015)
             
     elif keyboard.is_pressed("right"):
-        player = "p"
-        if posx >= 28:
+        player = player_right
+        if posx >= posxmax-2:
             time.sleep(0.015)
         else:
             posx = posx + 1
@@ -53,83 +55,33 @@ while gametype == 0:
 
     #gapping
     elif keyboard.is_pressed("Ctrl"):
-        if player == "p":
-            if posy == 5:
-                if plats[0][posx+1] != "_":
-                    if plats[0][posx+2] == "_":
-                        posx = posx + 2
-            if posy == 3:
-                if plats[1][posx+1] != "_":
-                    if plats[1][posx+2] == "_":
-                        posx = posx + 2
-            if posy == 1:
-                if plats[2][posx+1] != "_":
-                    if plats[2][posx+2] == "_":
-                        posx = posx + 2
-        if player == "q":
-            if posy == 5:
-                if plats[0][posx-1] != "_":
-                    if plats[0][posx-2] == "_":
-                        posx = posx - 2
-            if posy == 3:
-                if plats[1][posx-1] != "_":
-                    if plats[1][posx-2] == "_":
-                        posx = posx - 2
-            if posy == 1:
-                if plats[2][posx-1] != "_":
-                    if plats[2][posx-2] == "_":
-                        posx = posx - 2
+        if player == player_right:
+            if posx < posxmax-2:
+                if plats[posy][posx+1] != "_" and plats[posy][posx+2] == "_":
+                    posx = posx + 2
+                    time.sleep(0.015)
+        if player == player_left:
+            if posx >= 2:
+                if plats[posy][posx-1] != "_" and plats[posy][posx-2] == "_":
+                    posx = posx - 2
+                    time.sleep(0.015)
                 
     #falling physics
-    if posy == 5:
-        if plats[0][posx] != "_":
-            posy = posy-1
-    if posy == 4:
-        time.sleep(0.025)
-        posy = posy-1 
-    if posy == 3:
-        if plats[1][posx] != "_":
-            posy = posy-1
-    if posy == 2:
-        time.sleep(0.025)
-        posy = posy-1 
-    
-    #height draw routines
-    if posy == 5:
-        efm.insert_str(plats[0], player, posx)
-        print(space1)
-        print(plats[1])
-        print(space2)
-        print(plats[2])
-    if posy == 4:
-        print(plats[0])
-        efm.insert_str(space1, player, posx)
-        print(plats[1])
-        print(space2)
-        print(plats[2])
-    if posy == 3:
-        print(plats[0])
-        print(space1)
-        efm.insert_str(plats[1],player, posx)
-        print(space2)
-        print(plats[2])
-    if posy == 2:
-        print(plats[0])
-        print(space1)
-        print(plats[1])
-        efm.insert_str(space2, player, posx)
-        print(plats[2])
-    if posy == 1:
-        print(plats[0])
-        print(space1)
-        print(plats[1])
-        print(space2)
-        efm.insert_str(plats[2],player, posx)
+    if plats[posy][posx] != "_" and posy != posymax-1:
+        posy = posy+1
+
+    #drawing routines      
+    print(*plats[0:posy], sep = "\n")
+    efm.insert_str(plats[posy],player,posx)
+    print(*plats[posy+1:], sep = "\n")
 
     #ending sleep (reduce gameplay speed, make this a variable with frontend)
     time.sleep(0.025)
 
 #end side-on code here
+
+
+
 
 
 #start top-down code here
